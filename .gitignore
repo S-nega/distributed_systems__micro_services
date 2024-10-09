@@ -1,0 +1,30 @@
+# General ignores for all microservices
+
+# Gradle files
+.gradle/
+build/
+
+# Java class files
+*.class
+
+# JAR files
+*.jar
+*.war
+
+# Log files
+*.log
+
+# IDE files
+.idea/
+*.iml
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore coverage reports
+coverage/

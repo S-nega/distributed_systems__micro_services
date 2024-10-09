@@ -1,0 +1,30 @@
+version: '3.6'
+services:
+  userdb:
+    image: 'postgres'
+    container_name: 'user-db'
+    environment:
+#      - POSTGRES_DB=userdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty
+    ports:
+      - 2345:5432
+#    volumes:
+#      - userdb-data:/var/lib/postgresql/data
+
+
+  taskdb:
+    image: 'postgres'
+    container_name: 'task-db'
+    environment:
+#      - POSTGRES_DB=taskdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty
+    ports:
+      - 2346:5432
+#    volumes:
+#      - taskdb-data:/var/lib/postgresql/data
+
+#volumes:
+#  userdb-data:
+#  taskdb-data:

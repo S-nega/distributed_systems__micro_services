@@ -1,0 +1,10 @@
+--CREATE TABLE tasks (
+--    id UUID PRIMARY KEY,
+--    title VARCHAR(255) NOT NULL,
+--    description TEXT,
+--    due_date TIMESTAMP,
+--    status VARCHAR(50) DEFAULT 'NEW',
+--    user_id UUID NOT NULL
+--);
+--
+--CREATE INDEX idx_tasks_user ON tasks (user_id);
