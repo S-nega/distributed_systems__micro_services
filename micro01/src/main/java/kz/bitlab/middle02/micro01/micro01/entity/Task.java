@@ -22,7 +22,7 @@ public class Task {
 
     private String description;
 
-    private LocalDateTime deadlineDate;
+    private LocalDateTime due_date;
 
     private int status;
 
