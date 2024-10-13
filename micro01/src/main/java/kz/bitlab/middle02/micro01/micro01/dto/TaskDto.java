@@ -14,7 +14,7 @@ public class TaskDto {
     private Long id;
     private String title;
     private String description;
-    private LocalDateTime deadlineDate;
+    private LocalDateTime due_date;
     private int status;
     private Long userId;
 }
