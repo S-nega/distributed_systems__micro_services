@@ -3,16 +3,25 @@
 server:
   port: 8000
 
+minio:
+  url: http://localhost:9000
+  user: admin
+  password: adminadmin
+  bucket: file-server-bucket
+
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:2346/postgres
-#    url: jdbc:postgresql://localhost:2346/taskdb
     username: postgres
     password: qwerty
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
       connection-timeout: 30000
+  servlet:
+    multipart:
+      max-file-size: 5MB
   flyway:
     locations: classpath:db/migration
     enabled: true

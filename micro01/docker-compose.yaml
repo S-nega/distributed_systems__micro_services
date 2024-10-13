@@ -12,7 +12,6 @@ services:
     volumes:
       - userdb-data:/var/lib/postgresql/data
 
-
   taskdb:
     image: 'postgres'
     container_name: 'task-db'
@@ -25,6 +24,44 @@ services:
     volumes:
       - taskdb-data:/var/lib/postgresql/data
 
+  minio:
+    image: minio/minio:latest
+    container_name: 'minio_container'
+    ports:
+      - "9000:9000" #minio api
+      - "9090:9090" # web interface
+    volumes:
+      - minio_storage:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: adminadmin
+    command: server --console-address ":9090" /data
+
+#  minio-setup:
+#    image: minio/mc
+#    depends_on:
+#      - minio
+#    enviroment:
+#      MC_HOST: http://admin:adminadmin@minio:9000
+#    entrypoint: >
+#      /bin/sh -c "
+#        echo Starting Minio...;
+#        mc alias set minio http://minio:9000 admin adminadmin;
+#        mc mb minio/out-bucket;
+#        exit 0;
+#      "
+  minio-db:
+    image: 'postgres'
+    container_name: 'minio_db'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty
+      - POSTGRES_DB=postgres
+    ports:
+      - 2347:5432
+
 volumes:
   userdb-data:
   taskdb-data:
+  minio-data:
+  minio_storage:
