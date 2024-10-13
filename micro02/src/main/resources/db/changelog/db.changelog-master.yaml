@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/2024_10_11_12_39_create_init_table.yaml
+  - include:
+      file: db/changelog/changes/2024_10_11_12_44_insert_init_data.yaml

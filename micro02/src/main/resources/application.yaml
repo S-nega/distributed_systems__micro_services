@@ -11,10 +11,16 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:2345/postgres?autoreconnect=true
+    url: jdbc:postgresql://localhost:2345/postgres
     username: postgres
     password: qwerty
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+

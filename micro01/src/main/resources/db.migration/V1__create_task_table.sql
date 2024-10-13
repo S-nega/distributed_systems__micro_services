@@ -1,10 +1,11 @@
---CREATE TABLE tasks (
---    id UUID PRIMARY KEY,
---    title VARCHAR(255) NOT NULL,
---    description TEXT,
---    due_date TIMESTAMP,
---    status VARCHAR(50) DEFAULT 'NEW',
---    user_id UUID NOT NULL
---);
---
---CREATE INDEX idx_tasks_user ON tasks (user_id);
+create table tasks (
+     id serial primary key,
+--    id bigint primary key,
+    title varchar(255),
+    description text,
+    due_date timestamp,
+    status int default 1,
+    user_id serial
+);
+
+create index idx_tasks_user on tasks (user_id);

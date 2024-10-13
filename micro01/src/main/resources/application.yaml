@@ -9,20 +9,18 @@ spring:
 #    url: jdbc:postgresql://localhost:2346/taskdb
     username: postgres
     password: qwerty
-#    driver-class-name: org.postgresql.Driver
-#    hikari:
-#      maximum-pool-size: 10
-#      connection-timeout: 30000
-#  flyway:
-#    locations: classpath:db/migration
-#    enabled: true
-#    baseline-on-migrate: true
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+    baseline-on-migrate: true
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
-
-
+      ddl-auto: none
 
 feign:
   user:
