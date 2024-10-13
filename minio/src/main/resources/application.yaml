@@ -1,0 +1,26 @@
+#spring.application.name=minio
+
+server:
+  port: 8002
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:2347/postgres
+    username: postgres
+    password: qwerty
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipar:
+      max-file-size: 5MB
+
+#  application:
+#    name: minio
+
+minio:
+  url: http://localhost:9000
+  user: admin
+  password: adminadmin
+  bucket: file-server-bucket
