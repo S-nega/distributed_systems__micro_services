@@ -33,6 +33,14 @@ public class FileController {
                 .body(fileService.downloadFile(fileName));
     }
 
+    @GetMapping(value = "/view/{fileName}")
+    public ResponseEntity<ByteArrayResource> viewFile(@PathVariable(name = "fileName") String fileName){
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .body(fileService.downloadFile(fileName));
+    }
+
     @GetMapping
     public List<AttachmentFileDto> getAttachments(){
         return fileService.getAttachments();
