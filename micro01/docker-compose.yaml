@@ -1,5 +1,6 @@
 version: '3.6'
 services:
+
   userdb:
     image: 'postgres'
     container_name: 'user-db'
@@ -24,6 +25,7 @@ services:
     volumes:
       - taskdb-data:/var/lib/postgresql/data
 
+
   minio:
     image: minio/minio:latest
     container_name: 'minio_container'
@@ -37,19 +39,6 @@ services:
       MINIO_ROOT_PASSWORD: adminadmin
     command: server --console-address ":9090" /data
 
-#  minio-setup:
-#    image: minio/mc
-#    depends_on:
-#      - minio
-#    enviroment:
-#      MC_HOST: http://admin:adminadmin@minio:9000
-#    entrypoint: >
-#      /bin/sh -c "
-#        echo Starting Minio...;
-#        mc alias set minio http://minio:9000 admin adminadmin;
-#        mc mb minio/out-bucket;
-#        exit 0;
-#      "
   minio-db:
     image: 'postgres'
     container_name: 'minio_db'
@@ -60,8 +49,41 @@ services:
     ports:
       - 2347:5432
 
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.3
+    environment:
+      KC_DB: postgres
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB_URL: jdbc:postgresql://keycloak-db/postgres
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: qwerty
+    command:
+      - start-dev
+      - --http-relative-path=/auth
+    ports:
+      - 8081:8080
+      - 8843:8843
+    depends_on:
+      - keycloak-db
+
+  keycloak-db:
+    image: 'postgres:14'
+    container_name: 'keycloak-db'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: postgres
+    ports:
+      - 2348:5432
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
+
+
 volumes:
   userdb-data:
   taskdb-data:
   minio-data:
   minio_storage:
+  pgdata:
