@@ -26,11 +26,6 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.OK);
-    }
-
     @PutMapping
     public UserDto updateUser(@RequestBody UserDto user){
         return userService.updateUser(user);
@@ -41,4 +36,9 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.OK);
+    }
 }

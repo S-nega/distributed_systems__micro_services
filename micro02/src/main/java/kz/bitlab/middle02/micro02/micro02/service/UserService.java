@@ -24,8 +24,31 @@ public class UserService {
     }
 
     public UserDto addUser(UserDto userDto) {
+
+//        UserRepresentation userRepresentation = keyCloakClient.createUser(userCreateDTO);
+//        UserDto userDto = new UserDto();
+//        userDto.setUserName(userRepresentation.getUsername());
+//        userDto.setEmail(userRepresentation.getEmail());
+//        userDto.setFirstName(userRepresentation.getFirstName());
+//        userDto.setLastName(userRepresentation.getLastName());
+//
         return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
+
+//        return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
     }
+
+//    public UserDto createUser(UserDto userDTO){
+//
+////        UserRepresentation userRepresentation = keyCloakClient.createUser(userCreateDTO);
+//        UserDto userDto = new UserDto();
+////        userDto.setUserName(userRepresentation.getUsername());
+////        userDto.setEmail(userRepresentation.getEmail());
+////        userDto.setFirstName(userRepresentation.getFirstName());
+////        userDto.setLastName(userRepresentation.getLastName());
+//
+//        return userDto;
+//        return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
+//    }
 
     public UserDto updateUser(UserDto userDto) {
         return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
