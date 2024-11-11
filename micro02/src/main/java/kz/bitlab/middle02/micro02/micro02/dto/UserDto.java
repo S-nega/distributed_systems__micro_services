@@ -2,20 +2,12 @@ package kz.bitlab.middle02.micro02.micro02.dto;
 
 import lombok.*;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//public class UserDto {
-//
-//    private Long id;
-//    private String email;
-//    private String fullName;
-//}
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserDto {
     private Long id;
     private String email;

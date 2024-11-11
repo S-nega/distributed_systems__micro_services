@@ -49,7 +49,7 @@ public class KeyCloakClient {
         newUser.setEmail(userCreateDTO.getEmail());
         newUser.setEmailVerified(true);
         newUser.setUsername(userCreateDTO.getUserName());
-        newUser.setFirstName(userCreateDTO.getFistName());
+        newUser.setFirstName(userCreateDTO.getFirstName());
         newUser.setLastName(userCreateDTO.getLastName());
         newUser.setEnabled(true);
 

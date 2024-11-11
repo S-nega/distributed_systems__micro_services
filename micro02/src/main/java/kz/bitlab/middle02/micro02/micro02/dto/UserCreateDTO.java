@@ -1,4 +1,4 @@
-package kz.bitlab.middle02.micro01.micro01.dto;
+package kz.bitlab.middle02.micro02.micro02.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Setter;
 public class UserCreateDTO {
 
     private String email;
-    private String firstName;
+    private String fistName;
     private String lastName;
     private String userName;
     private String password;
