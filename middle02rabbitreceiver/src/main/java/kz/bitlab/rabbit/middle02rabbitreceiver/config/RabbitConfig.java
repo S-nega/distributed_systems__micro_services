@@ -32,23 +32,22 @@ public class RabbitConfig {
         classMapper.setIdClassMapping(idClassMapping);
         return classMapper;
     }
-
     @Bean
-    public Queue deadLetterQueue(){
-        return QueueBuilder.durable("department_messages_queue.dlq").build();
+    public Queue deadLetterQueue() {
+        return QueueBuilder.durable("almaty_orders_queue.dlq").build();
     }
 
     @Bean
-    TopicExchange deadLetterExchange(){
+    public TopicExchange deadLetterExchange() {
         return ExchangeBuilder.topicExchange("dlx").durable(true).build();
     }
 
     @Bean
-    public Binding DLQBinding(){
+    public Binding DLQbinding() {
         return BindingBuilder
                 .bind(deadLetterQueue())
                 .to(deadLetterExchange())
-                .with("dlx.department_queue");
+                .with("dlx.almaty_orders");
     }
 }
 
