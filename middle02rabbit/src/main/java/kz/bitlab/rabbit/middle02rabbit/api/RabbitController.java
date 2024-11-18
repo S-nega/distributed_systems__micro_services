@@ -1,13 +1,13 @@
 package kz.bitlab.rabbit.middle02rabbit.api;
 
+import kz.bitlab.rabbit.middle02rabbit.dto.Message;
+import kz.bitlab.rabbit.middle02rabbit.dto.OrderDTO;
 import kz.bitlab.rabbit.middle02rabbit.service.MessageSender;
+import kz.bitlab.rabbit.middle02rabbit.service.OrderPublisher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/rabbit")
@@ -15,14 +15,36 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitController {
 
     private final MessageSender messageSender;
+    private final OrderPublisher orderPublisher;
 
     @PostMapping(value = "/send")
     public ResponseEntity<String> sendMessage(@RequestBody String message){
         try{
             messageSender.sendMessage(message);
-            return new ResponseEntity<>("Message send success", HttpStatus.OK);
+            return new ResponseEntity<>("Message send successfully", HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>("Failed send message", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/send-to-all")
+    public ResponseEntity<String> sendNotification(@RequestBody OrderDTO orderDTO){
+        try{
+            orderPublisher.sendOrderToAll(orderDTO);
+            return new ResponseEntity<>("Order sent Successfully!", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Failed to send to all", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/send-message/{departmentName}")
+    public ResponseEntity<String> sendMessage(@PathVariable(name = "departmentName") String departmentName,
+                                              @RequestBody Message message){
+        try{
+            messageSender.sendData(message, departmentName);
+            return new ResponseEntity<>("Message Sent Successfully!", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Failed to send message to topic", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

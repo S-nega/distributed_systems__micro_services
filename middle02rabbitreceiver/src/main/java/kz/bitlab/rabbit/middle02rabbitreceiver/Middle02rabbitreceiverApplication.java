@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Middle02rabbitreceiverApplication {
-
+//Notification Service
 	public static void main(String[] args) {
 		SpringApplication.run(Middle02rabbitreceiverApplication.class, args);
 	}
