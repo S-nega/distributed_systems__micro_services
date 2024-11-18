@@ -12,16 +12,16 @@ public class MessageSender {
 
     private final RabbitTemplate rabbitTemplate;
 
-    @Value("${mq.message.topic.exchange}")
-    private String messageTopicExchange;
+//    @Value("${mq.message.topic.exchange}")
+//    private String messageTopicExchange;
 
     public void sendMessage(String message){
         rabbitTemplate.convertAndSend("message-exchange", "key123", message);
     }
 
-    public void sendData(Message message, String department){
-        String routingKey = "department." + department;
-        rabbitTemplate.convertAndSend(messageTopicExchange, routingKey, message);
-    }
+//    public void sendData(Message message, String department){
+//        String routingKey = "department." + department;
+//        rabbitTemplate.convertAndSend(messageTopicExchange, routingKey, message);
+//    }
 
 }

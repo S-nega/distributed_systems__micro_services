@@ -12,30 +12,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderPublisher {
 
-//    private final RabbitTemplate rabbitTemplate;
-//
-//    @Value("${mq.order.topic.exchange}")
-//    private String topicExchange;
-//
-//    @Value("${mq.order.fanout.exchange}")
-//    private String fanoutExchange;
-//
-//    public void sendOrderToPrepare(OrderDTO order, String region) {
-//        String routingKey = "order." + region;
-//        rabbitTemplate.convertAndSend(topicExchange, routingKey, order);
-//    }
-//
-//    public void updateOrderStatus(OrderDTO orderDTO, String status) {
-//        orderDTO.setStatus(status);
-//        rabbitTemplate.convertAndSend(fanoutExchange, "", orderDTO);
-//    }
-//}
     private final RabbitTemplate rabbitTemplate;
+
+    @Value("${mq.order.topic.exchange}")
+    private String topicExchange;
 
     @Value("${mq.order.fanout.exchange}")
     private String fanoutExchange;
 
-    public void sendOrderToAll(OrderDTO orderDTO){
+    public void sendOrderToPrepare(OrderDTO order, String region) {
+        String routingKey = "order." + region;
+        rabbitTemplate.convertAndSend(topicExchange, routingKey, order);
+    }
+
+    public void updateOrderStatus(OrderDTO orderDTO, String status) {
+        orderDTO.setStatus(status);
         rabbitTemplate.convertAndSend(fanoutExchange, "", orderDTO);
     }
 }
