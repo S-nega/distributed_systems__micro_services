@@ -16,5 +16,5 @@ public class OrderDTO implements Serializable {
     private String courier;
     private List<String> foods;
     private String status;
-
+    private String region;
 }

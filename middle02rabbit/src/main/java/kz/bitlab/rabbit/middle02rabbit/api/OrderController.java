@@ -17,7 +17,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO) {
         try {
-            orderPublisher.sendOrderToPrepare(orderDTO, "almaty");
+            orderPublisher.sendOrderToPrepare(orderDTO);
             return new ResponseEntity<>("Order created", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Order failed to create", HttpStatus.INTERNAL_SERVER_ERROR);

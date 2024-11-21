@@ -34,7 +34,7 @@ public class RabbitConfig {
     }
     @Bean
     public Queue deadLetterQueue() {
-        return QueueBuilder.durable("almaty_orders_queue.dlq").build();
+        return QueueBuilder.durable("orders_queue.dlq").build();
     }
 
     @Bean
@@ -47,7 +47,7 @@ public class RabbitConfig {
         return BindingBuilder
                 .bind(deadLetterQueue())
                 .to(deadLetterExchange())
-                .with("dlx.almaty_orders");
+                .with("dlx.orders");
     }
 }
 
