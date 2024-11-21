@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: snega
+      changes:
+        - update:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: 'snega@gmail.com'
+              - column:
+                  name: firstName
+                  value: 'Snezhana'
+              - column:
+                  name: lastName
+                  value: 'Golovko'
+              - column:
+                  name: userName
+                  value: 'Snega'
+            where: id = 1
+        - update:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: 'Alex@gmail.com'
+              - column:
+                  name: firstName
+                  value: 'Alexey'
+              - column:
+                  name: lastName
+                  value: 'Konevets'
+              - column:
+                  name: userName
+                  value: 'Alex'
+            where: id = 2

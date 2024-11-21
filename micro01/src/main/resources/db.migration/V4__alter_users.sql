@@ -1,3 +1,0 @@
---alter table users
---    add column user_uuid varchar(36);
--- users table is in another service !

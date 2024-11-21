@@ -17,6 +17,16 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "fullname")
-    private String fullName;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "user_name")
+    private String userName;
+
+
+//    @Column(name = "fullname")
+//    private String fullName;
 }

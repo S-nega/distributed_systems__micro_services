@@ -4,10 +4,8 @@ import kz.bitlab.middle02.micro01.micro01.dto.*;
 import kz.bitlab.middle02.micro01.micro01.service.UserService;
 import kz.bitlab.middle02.micro01.micro01.util.UserUtils;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +18,6 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-//    @PreAuthorize("hasRole('manager')")
     public List<UserDto> getUsers() {
         return userService.getUsers();
     }
@@ -65,6 +62,7 @@ public class UserController {
     public UserDto getCurrentUser(){
         return UserUtils.getCurrentUser();
     }
+
     @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody UserChangePasswordDto userChangePasswordDTO) {
         String currentUsername = UserUtils.getCurrentUsername();

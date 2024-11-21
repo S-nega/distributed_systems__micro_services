@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: snega
+      changes:
+        - dropColumn:
+            columnName: fullname
+            tableName: users
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: userName
+                  type: varchar(255)
+              - column:
+                  name: firstName
+                  type: varchar(255)
+              - column:
+                  name: lastName
+                  type: varchar(255)

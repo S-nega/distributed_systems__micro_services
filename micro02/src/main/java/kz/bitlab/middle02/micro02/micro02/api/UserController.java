@@ -1,6 +1,9 @@
 package kz.bitlab.middle02.micro02.micro02.api;
 
+import kz.bitlab.middle02.micro02.micro02.dto.UserCreateDTO;
 import kz.bitlab.middle02.micro02.micro02.dto.UserDto;
+import kz.bitlab.middle02.micro02.micro02.dto.UserLoginDto;
+import kz.bitlab.middle02.micro02.micro02.dto.UserTokenDto;
 import kz.bitlab.middle02.micro02.micro02.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,11 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @PostMapping
+    public UserDto addUser(@RequestBody UserDto user){
+        return userService.addUser(user);
+    }
+
     @PutMapping
     public UserDto updateUser(@RequestBody UserDto user){
         return userService.updateUser(user);
@@ -37,8 +45,41 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.OK);
-    }
+
+
+//    @PostMapping(value = "/create")// "/auth"
+//    public ResponseEntity<?> createUser(@RequestBody UserCreateDTO userCreateDTO){ // authorize
+//        return new ResponseEntity<>(userService.createUser(userCreateDTO), HttpStatus.OK);
+//    }
+//
+//    @PostMapping(value = "/token")
+//    public UserTokenDto signIn(@RequestBody UserLoginDto userLoginDto){
+//        return userService.authenticate(userLoginDto);
+//    }
+//
+//    @GetMapping(value = "/current-user-name")
+//    public String getCurrentUserName(){
+//        return UserUtils.getCurrentUsername();
+//    }
+//
+//    @GetMapping(value = "/current-user")
+//    public UserDto getCurrentUser(){
+//        return UserUtils.getCurrentUser();
+//    }
+//
+//    @PostMapping("/change-password")
+//    public ResponseEntity<String> changePassword(@RequestBody UserChangePasswordDto userChangePasswordDTO) {
+//        String currentUsername = UserUtils.getCurrentUsername();
+//
+//        if(currentUsername == null) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Could not identify the current user.");
+//        }
+//
+//        try {
+//            userService.changePassword(currentUsername, userChangePasswordDTO.getNewPassword());
+//            return ResponseEntity.ok("Password changed successfully.");
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error changing password: " + e.getMessage());
+//        }
+//    }
 }

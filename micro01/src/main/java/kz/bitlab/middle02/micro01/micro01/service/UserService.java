@@ -40,6 +40,7 @@ public class UserService {
         userDto.setFirstName(userRepresentation.getFirstName());
         userDto.setLastName(userRepresentation.getLastName());
 
+//        addUser(userDto);
         return userDto;
 //        return userFeignClient.addUser(userDto);
     }
@@ -48,16 +49,16 @@ public class UserService {
         return keyCloakClient.signIn(userLoginDto);
     }
 
+    public void changePassword(String userName, String password){
+        keyCloakClient.changePassword(userName, password);
+    }
+
     public UserDto updateUser(UserDto user) {
         return userFeignClient.updateUser(user);
     }
 
     public void deleteUser(Long id) {
         userFeignClient.deleteUser(id);
-    }
-
-    public void changePassword(String userName, String password){
-        keyCloakClient.changePassword(userName, password);
     }
 
 }
