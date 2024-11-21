@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MessageListener {
 
-    @RabbitListener(bindings = @QueueBinding(
-        exchange = @Exchange(value = "message-exchange",
-                type = ExchangeTypes.DIRECT),
-        value = @Queue(value = "message-queue"), key = "key123"))
-    public void receivedMessage(String message) {
-        log.info("Received message: {}", message);
-    }
+//    @RabbitListener(bindings = @QueueBinding(
+//        exchange = @Exchange(value = "message-exchange",
+//                type = ExchangeTypes.DIRECT),
+//        value = @Queue(value = "message-queue"), key = "key123"))
+//    public void receivedMessage(String message) {
+//        log.info("Received message: {}", message);
+//    }
 
 //    @RabbitListener(bindings = @QueueBinding(
 //            value = @Queue(value = "department_messages_queue",

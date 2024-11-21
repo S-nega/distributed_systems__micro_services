@@ -14,14 +14,32 @@ public class OrderNotificationListener {
             value = @Queue(value = "almaty_orders_queue",
                     arguments = {
                             @Argument(name = "x-dead-letter-exchange", value = "dlx"),
-                            @Argument(name = "x-dead-letter-routing-key", value = "dlx.almaty_orders")
+                            @Argument(name = "x-dead-letter-routing-key", value = "dlx.orders")
                     }),
             exchange = @Exchange(value = "${mq.order.topic.exchange}", type = ExchangeTypes.TOPIC),
-            key = "order.#"))
+            key = "order.almaty"))
     public void receiveAlmatyOrder(OrderDTO order) {
         try {
+            processOrder(order);
             log.info("Received order - ORDER:{}", order);
-//            processOrder(order);
+        } catch (Exception e) {
+            log.error("Error processing order - ORDER:{}, ERROR:{}", order, e.getMessage());
+            throw e;
+        }
+    }
+
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "astana_orders_queue",
+                    arguments = {
+                            @Argument(name = "x-dead-letter-exchange", value = "dlx"),
+                            @Argument(name = "x-dead-letter-routing-key", value = "dlx.orders")
+                    }),
+            exchange = @Exchange(value = "${mq.order.topic.exchange}", type = ExchangeTypes.TOPIC),
+            key = "order.astana"))
+    public void receiveAstanaOrder(OrderDTO order) {
+        try {
+            processOrder(order);
+            log.info("Received order - ORDER:{}", order);
         } catch (Exception e) {
             log.error("Error processing order - ORDER:{}, ERROR:{}", order, e.getMessage());
             throw e;
