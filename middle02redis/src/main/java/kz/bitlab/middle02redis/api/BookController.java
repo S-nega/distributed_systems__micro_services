@@ -5,8 +5,10 @@ import kz.bitlab.middle02redis.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/book")
+@RequestMapping(value = "/books")
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
@@ -16,8 +18,24 @@ public class BookController {
         return bookService.addBook(book);
     }
 
+    @GetMapping
+    public List<Book> getAllBooks(){
+        return bookService.gelAllBooks();
+    }
+
     @GetMapping(value = "{id}")
     public Book getBook(@PathVariable(name = "id") Long id){
         return bookService.getBook(id);
     }
+
+    @PutMapping(value = "{id}")
+    public Book updateBook(@RequestBody Book book, @PathVariable(name = "id") Long id){
+        return bookService.updateBook(book, id);
+    }
+
+    @DeleteMapping(value = "{id}")
+    public String deleteBook(@PathVariable(name = "id") Long id){
+        return bookService.deleteBook(id);
+    }
+
 }
