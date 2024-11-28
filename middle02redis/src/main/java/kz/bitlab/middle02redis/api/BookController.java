@@ -23,6 +23,11 @@ public class BookController {
         return bookService.gelAllBooks();
     }
 
+    @GetMapping(value = "/popular")
+    public List<Book> getPopularBooks(){
+        return bookService.getPopularBooks();
+    }
+
     @GetMapping(value = "{id}")
     public Book getBook(@PathVariable(name = "id") Long id){
         return bookService.getBook(id);

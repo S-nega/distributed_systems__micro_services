@@ -17,6 +17,10 @@ public class CacheService {
         redisTemplate.opsForValue().set(key, object, timeout, timeUnit);
     }
 
+    public void cachePopularObject(String key, String bookKey, long timeout, TimeUnit timeUnit){
+        redisTemplate.opsForValue().setIfAbsent(key, bookKey, timeout, timeUnit);
+    }
+
     public Object getCachedObject(String key){
         return redisTemplate.opsForValue().get(key);
     }
