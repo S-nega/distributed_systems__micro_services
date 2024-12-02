@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(value = "/books")
@@ -24,7 +25,7 @@ public class BookController {
     }
 
     @GetMapping(value = "/popular")
-    public List<Book> getPopularBooks(){
+    public Set<Object> getPopularBooks(){
         return bookService.getPopularBooks();
     }
 
