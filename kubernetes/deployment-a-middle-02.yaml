@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: middle02-deployment-a-service
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: itemapp
+    template:
+        metadata:
+            labels:
+                app: itemapp
+        spec:
+            containers:
+            - name: item-service-a-container
+                image: ssnega/middle-02-kuber-pod-a
+                ports:
+                - containerPort: 8001
+                env:
+                - name: SERVER_PORT
+                value: "8001"
+
+                
+                # - name: SPRING_DATASOURCE_URL
+                # value: "jdbc:postgresql://192.168.0.131:2346/postgres"
+                # - name: SPRING_DATASOURCE_USER
+                # value: "postgres"
+                # - name: SPRING_DATASOURCE_PASSWORD
+                # value: "qwerty"
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#     name: task-deployment
+# spec: 
+#     replicas: 1
+#     selector:
+#         matchLabels:
+#             app: taskapp
+#     template:
+#         metadata:
+#             labels:
+#                 app: taskapp
+#         spec:
+#             containers:
+#                 - name: taskservicecontainer
+#                 image: snega/task-microservice
+#                 ports:
+#                 - containerPort: 8005
+#                 env:
+#                 - name: SERVER_PORT
+#                     value: "8005"
+#                 - name: SPRING_DATASOURCE_URL
+#                     value: "jdbc:postgresql://192.168.0.131:2345/postgres"
+#                 - name: SPRING_DATASOURCE_USER
+#                     value: "postgres"
+#                 - name: SPRING_DATASOURCE_PASSWORD
+#                     value: "qwerty"
+#                 - name: USER_FEIGN_CLIENT_URL
+#                     value: http://

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: servicea-deployment
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: servicea
+    template:
+        metadata:
+            labels:
+                app: servicea
+        spec:
+            containers:
+            - name: serviceacontainer
+                image: ssnega/kuber-servicea
+                ports:
+                - containerPort: 8000
+                env:
+                - name: server.port
+                value: "8000"

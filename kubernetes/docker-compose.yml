@@ -1,0 +1,37 @@
+version: '3.1'
+services:
+    taskdb:
+        image: 'postgres'
+        container_name: 'task-service-db'
+        environment:
+            - POSTGRES_UESR=postgres
+            - POSTGRES_PASSWORD=qwerty
+        ports:
+            - 2345:5432
+
+        userdb:
+            image: 'postgres'
+            container_name: 'user-service-db'
+            environment:
+                - POSTGRES_UESR: postgres
+                - POSTGRES_PASSWORD: qwerty
+            ports:
+                - 2345:5432
+
+        minio:
+            image: quay.io/minio/minio
+            container_name: 'minio-container'
+            ports:
+                - 9000:9000
+                - 9001:9001
+        # image: 'ssnega/middle02-kuber-pod-a'
+        # container_name: 'middle02-kuber-pod-a-container'
+        # environment:
+        #     - SERVER_PORT=8000
+        #     - SPRING_DATASOURCE_URL=jdbc:postgresql://task-db:5432/postgres
+        #     - SPRING_DATASOURCE_USERNAME=postgres
+        #     - SPRING_DATASOURCE_PASSWORD=postgres
+        #     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+        #     - SPRING_JPA_SHOW_SQL=true
+        # ports:
+        #     - 8001:8000
