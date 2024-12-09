@@ -24,11 +24,11 @@ public class BookService {
     }
 
     public List<Book> gelAllBooks(){
-        List<Book> books = (List<Book>) cacheService.getCachedObject("books");
-        if (books != null) {
-            return books;
-        }
-        books = bookRepository.findAll();
+//        List<Book> books = (List<Book>) cacheService.getCachedObject("books");
+//        if (books != null) {
+//            return books;
+//        }
+        List<Book> books = bookRepository.findAll();
         return books;
     }
 
@@ -45,10 +45,10 @@ public class BookService {
         }
         Optional<Book> book = bookRepository.findById(id);
         book.ifPresent(
-                b -> {
-                    cacheService.cacheObject(cacheKey, b, 1, TimeUnit.MINUTES);
-                    cacheService.cachePopularObject(b, 1, TimeUnit.MINUTES);
-                }
+            b -> {
+                cacheService.cacheObject(cacheKey, b, 1, TimeUnit.MINUTES);
+                cacheService.cachePopularObject(b, 1, TimeUnit.MINUTES);
+            }
         );
         return book.orElse(null);
     }
